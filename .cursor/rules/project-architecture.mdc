@@ -1,0 +1,27 @@
+---
+description: Architecture and design-system standards for the Copcrxsh portfolio
+alwaysApply: true
+---
+
+# Copcrxsh Portfolio Standards
+
+- This repository is the frontend app only. Never add Route Handlers or `src/app/api`.
+- If a standalone API is required, create it in a separate project named `copcrxsh-port-api`.
+- Use the installed Next.js version, App Router, TypeScript, and Server Components by default.
+- Read the matching installed Next.js documentation before using framework APIs.
+- Use Supabase directly through `@supabase/supabase-js` and `@supabase/ssr`; never add an ORM.
+- Keep concerns separate: routes in `src/app`, UI in `src/components`, domain logic in
+  `src/features`, infrastructure in `src/lib`, shared hooks in `src/hooks`.
+- Put all Supabase reads and writes in the relevant `src/features/*` module.
+- Use kebab-case filenames and PascalCase component/type names. Avoid barrel files.
+- Use generated `src/types/database.types.ts`; never use `any`.
+- Every application table must have RLS. Public users may only read published work;
+  authenticated admins may write.
+- Use shadcn/ui primitives in `src/components/ui`; do not place business logic there.
+- Use Ink Black `#0E0E10` and Bone White `#F6F3EC` as foundations.
+- Use Watermelon Sorbet tokens sparingly. Bubblegum Pink `#EF476F` is the primary accent;
+  Golden Pollen, Emerald, Ocean Blue, and Dark Teal are supporting data/illustration colors.
+- Use Space Grotesk for headings and Inter for body copy. Do not use italics.
+- Use Tailwind's standard type and spacing scales, `max-w-6xl`, and consistent responsive grids.
+- Keep motion restrained: 16px fade/slide reveals and 1.02 card hover scale only.
+- Do not add page transitions, parallax, glitch effects, or custom animation frameworks.

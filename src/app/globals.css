@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #f6f3ec;
+  --foreground: #0e0e10;
+  --card: #fffdf8;
+  --card-foreground: #0e0e10;
+  --primary: #ef476f;
+  --primary-foreground: #0e0e10;
+  --muted: #ebe6dc;
+  --muted-foreground: #5e5b57;
+  --border: #d8d1c5;
+  --ring: #ef476f;
+  --golden-pollen: #ffd166;
+  --emerald: #06d6a0;
+  --ocean-blue: #118ab2;
+  --dark-teal: #073b4c;
+  --radius: 0.625rem;
+}
+
+.dark {
+  --background: #0e0e10;
+  --foreground: #f6f3ec;
+  --card: #16161a;
+  --card-foreground: #f6f3ec;
+  --primary: #ef476f;
+  --primary-foreground: #f6f3ec;
+  --muted: #1c1c21;
+  --muted-foreground: #a8a49c;
+  --border: #2a2a30;
+  --ring: #ef476f;
+  --golden-pollen: #ffd166;
+  --emerald: #06d6a0;
+  --ocean-blue: #118ab2;
+  --dark-teal: #073b4c;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-golden-pollen: var(--golden-pollen);
+  --color-emerald: var(--emerald);
+  --color-ocean-blue: var(--ocean-blue);
+  --color-dark-teal: var(--dark-teal);
+  --font-sans: "Inter", "Inter Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-heading:
+    "Space Grotesk", "Space Grotesk Fallback", ui-sans-serif, system-ui,
+    sans-serif;
+  --radius-sm: calc(var(--radius) * 0.75);
+  --radius-md: calc(var(--radius) * 0.875);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.5);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-space-grotesk), sans-serif;
+}
+
+em,
+i {
+  font-style: normal;
+}
+
+::selection {
+  background: var(--primary);
+  color: var(--foreground);
+}
