@@ -1,39 +1,68 @@
-import { ArrowUpRight, Braces, Database, ServerCog } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
 import { Container } from "@/components/layout/container";
-import { buttonVariants } from "@/components/ui/button";
+import { HeroCollage } from "@/components/sections/hero-collage";
+import { PixelDivider } from "@/components/sections/pixel-divider";
 import { Reveal } from "@/components/sections/reveal";
+import { ServicesSection } from "@/components/sections/services-section";
+import { SkillsSection } from "@/components/sections/skills-section";
+import { WorksGrid } from "@/components/sections/works-grid";
+import { buttonVariants } from "@/components/ui/button";
+import { getPublishedWorks } from "@/features/works/queries";
 import { cn } from "@/lib/utils";
 
-export default function HomePage() {
+export default async function HomePage() {
+  let works: Awaited<ReturnType<typeof getPublishedWorks>> = [];
+
+  try {
+    works = await getPublishedWorks();
+  } catch {
+    works = [];
+  }
+
+  const featured = works.slice(0, 3);
+
   return (
     <>
-      <section className="border-b py-20 sm:py-28 lg:py-36">
+      <section className="overflow-hidden border-b py-16 sm:py-24 lg:py-28">
         <Container>
-          <p className="mb-6 text-sm font-semibold tracking-widest text-primary uppercase">
-            Full-stack developer · Bangkok
-          </p>
-          <h1 className="max-w-5xl font-heading text-5xl leading-none font-semibold tracking-tight sm:text-6xl">
-            I build complete web products, from interface to infrastructure.
-          </h1>
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-            <Link
-              href="/contact"
-              className={cn(buttonVariants({ size: "lg" }), "gap-2")}
-            >
-              Contact Me
-              <ArrowUpRight aria-hidden="true" className="size-4" />
-            </Link>
-            <Link
-              href="/works"
-              className={buttonVariants({ variant: "outline", size: "lg" })}
-            >
-              Explore selected work
-            </Link>
+          <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+            <div>
+              <p className="mb-4 font-heading text-4xl font-semibold tracking-tight text-primary sm:text-5xl">
+                COPCRXSH
+              </p>
+              <h1 className="max-w-xl font-heading text-3xl leading-tight font-semibold tracking-tight sm:text-5xl">
+                Full-stack products with a clear point of view.
+              </h1>
+              <p className="mt-6 max-w-lg text-lg leading-8 text-muted-foreground">
+                I build reliable web apps for HR reviews and freelance clients —
+                professional first, with a personal edge.
+              </p>
+              <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+                <Link
+                  href="/contact"
+                  className={cn(buttonVariants({ size: "lg" }), "gap-2")}
+                >
+                  Contact Me
+                  <ArrowUpRight aria-hidden="true" className="size-4" />
+                </Link>
+                <Link
+                  href="/works"
+                  className={buttonVariants({ variant: "outline", size: "lg" })}
+                >
+                  Explore selected work
+                </Link>
+              </div>
+            </div>
+            <HeroCollage />
           </div>
         </Container>
       </section>
+
+      <div className="py-8">
+        <PixelDivider />
+      </div>
 
       <section className="py-20 sm:py-28">
         <Container>
@@ -44,7 +73,7 @@ export default function HomePage() {
                   Selected work
                 </p>
                 <h2 className="font-heading text-3xl font-semibold sm:text-4xl">
-                  One developer. The full stack.
+                  Case studies from recent builds.
                 </h2>
               </div>
               <Link
@@ -54,56 +83,13 @@ export default function HomePage() {
                 View all work
               </Link>
             </div>
-            <div className="grid gap-6 md:grid-cols-3">
-              {[
-                {
-                  color: "bg-primary",
-                  label: "Frontend engineering",
-                  description: "Fast, accessible interfaces built with React.",
-                  icon: Braces,
-                },
-                {
-                  color: "bg-golden-pollen",
-                  label: "Backend & APIs",
-                  description: "Typed services with clear boundaries.",
-                  icon: ServerCog,
-                },
-                {
-                  color: "bg-emerald",
-                  label: "Cloud & data",
-                  description: "Reliable databases, auth, and deployment.",
-                  icon: Database,
-                },
-              ].map(({ color, label, description, icon: Icon }, index) => (
-                <article
-                  key={label}
-                  className="group overflow-hidden rounded-lg border bg-card transition duration-200 hover:scale-[1.02] hover:shadow-lg"
-                >
-                  <div
-                    className={cn(
-                      "grid aspect-4/3 place-items-center text-foreground",
-                      color,
-                    )}
-                  >
-                    <Icon aria-hidden="true" className="size-12 stroke-[1.5]" />
-                  </div>
-                  <div className="p-5">
-                    <p className="text-xs text-muted-foreground">
-                      0{index + 1}
-                    </p>
-                    <h3 className="mt-2 font-heading text-xl font-semibold">
-                      {label}
-                    </h3>
-                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                      {description}
-                    </p>
-                  </div>
-                </article>
-              ))}
-            </div>
+            <WorksGrid works={featured} />
           </Reveal>
         </Container>
       </section>
+
+      <SkillsSection />
+      <ServicesSection />
 
       <section className="border-t py-20 sm:py-28">
         <Container>
@@ -116,8 +102,8 @@ export default function HomePage() {
                 Need a freelance full-stack developer?
               </h2>
               <p className="mt-5 text-lg leading-8 text-muted-foreground">
-                Share your project brief, budget, and timeline. I’ll reply with
-                availability and a practical plan — then we can start building.
+                Share your project brief, budget, and timeline. I will reply
+                with availability and a practical plan.
               </p>
               <Link
                 href="/contact"
