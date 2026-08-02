@@ -9,6 +9,7 @@ import { Stagger, StaggerItem } from "@/components/sections/stagger";
 import { buttonVariants } from "@/components/ui/button";
 import { WindowFrame } from "@/components/ui/window-frame";
 import { cv } from "@/content/cv";
+import { hireCta } from "@/content/nav";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -74,13 +75,13 @@ export default function AboutPage() {
                   <ExternalLink aria-hidden="true" className="size-3.5" />
                 </a>
                 <Link
-                  href="/hire"
+                  href={hireCta.href}
                   className={cn(
                     buttonVariants({ variant: "outline", size: "sm" }),
                     "gap-1.5",
                   )}
                 >
-                  Contact Us
+                  {hireCta.label}
                   <ArrowUpRight aria-hidden="true" className="size-3.5" />
                 </Link>
               </div>
@@ -112,7 +113,7 @@ export default function AboutPage() {
                         <h3 className="font-heading text-xl font-semibold">
                           {job.role}
                         </h3>
-                        <p className="mt-1 text-sm font-medium text-primary">
+                        <p className="mt-1 text-sm font-medium text-ocean-blue">
                           {job.company}
                         </p>
                       </div>

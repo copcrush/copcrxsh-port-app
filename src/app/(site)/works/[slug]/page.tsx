@@ -10,6 +10,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { WindowFrame } from "@/components/ui/window-frame";
 import { getPublishedWorkBySlug } from "@/features/works/queries";
 import { parseWorkContent } from "@/features/works/types";
+import { hireCta } from "@/content/nav";
 import { cn } from "@/lib/utils";
 
 type WorkDetailPageProps = {
@@ -146,7 +147,7 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
             </a>
           ) : null}
           <Link
-            href="/hire"
+            href={hireCta.href}
             className={cn(
               buttonVariants({
                 variant: work.live_url ? "outline" : "default",

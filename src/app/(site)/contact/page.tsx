@@ -15,6 +15,7 @@ import { Reveal } from "@/components/sections/reveal";
 import { buttonVariants } from "@/components/ui/button";
 import { WindowFrame } from "@/components/ui/window-frame";
 import { cv } from "@/content/cv";
+import { hireCta } from "@/content/nav";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -124,10 +125,10 @@ export default function ContactPage() {
             timeline.
           </p>
           <Link
-            href="/hire"
+            href={hireCta.href}
             className={cn(buttonVariants({ size: "lg" }), "mt-6 gap-2")}
           >
-            Contact Us
+            {hireCta.label}
             <ArrowUpRight aria-hidden="true" className="size-4" />
           </Link>
         </div>

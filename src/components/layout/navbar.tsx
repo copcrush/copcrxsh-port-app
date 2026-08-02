@@ -4,15 +4,8 @@ import { BrandMark } from "@/components/layout/brand-mark";
 import { Container } from "@/components/layout/container";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { buttonVariants } from "@/components/ui/button";
+import { hireCta, siteNav } from "@/content/nav";
 import { cn } from "@/lib/utils";
-
-const links = [
-  { href: "/works", label: "Works" },
-  { href: "/about", label: "About" },
-  { href: "/#skills", label: "Skills" },
-  { href: "/#services", label: "Services" },
-  { href: "/contact", label: "Contact" },
-];
 
 export function Navbar() {
   return (
@@ -28,7 +21,7 @@ export function Navbar() {
         <div className="flex items-center gap-2 sm:gap-4">
           <nav aria-label="Main navigation" className="hidden sm:block">
             <ul className="flex items-center gap-5 text-sm font-semibold sm:gap-7">
-              {links.map((link) => (
+              {siteNav.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -42,10 +35,10 @@ export function Navbar() {
           </nav>
           <ThemeToggle />
           <Link
-            href="/hire"
+            href={hireCta.href}
             className={cn(buttonVariants({ size: "sm" }), "cursor-pointer")}
           >
-            Contact Us
+            {hireCta.label}
           </Link>
         </div>
       </Container>
