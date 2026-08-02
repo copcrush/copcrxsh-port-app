@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { PixelDivider } from "@/components/sections/pixel-divider";
 import { buttonVariants } from "@/components/ui/button";
+import { cv } from "@/content/cv";
 import { cn } from "@/lib/utils";
 
 function PixelHeart() {
@@ -33,20 +34,22 @@ function PixelHeart() {
 
 export function Footer() {
   return (
-    <footer className="border-t py-8">
+    <footer className="border-t-[2.5px] border-foreground py-8">
       <div className="mb-6">
         <PixelDivider />
       </div>
       <Container className="flex flex-col gap-4 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
         <div className="space-y-1">
-          <p className="inline-flex items-center gap-2">
-            © {new Date().getFullYear()} COPCRXSH.
+          <p className="inline-flex items-center gap-2 font-semibold text-foreground">
+            © {new Date().getFullYear()} {cv.brand}.
             <PixelHeart />
           </p>
-          <p>Engineered with intent. Built without excess.</p>
+          <p>
+            {cv.name} · {cv.title} · {cv.location}
+          </p>
         </div>
-        <Link href="/contact" className={cn(buttonVariants({ size: "sm" }))}>
-          Contact Me
+        <Link href="/hire" className={cn(buttonVariants({ size: "sm" }))}>
+          Contact Us
         </Link>
       </Container>
     </footer>

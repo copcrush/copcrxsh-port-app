@@ -18,6 +18,7 @@ export type WorkFormValues = {
   highlights: string;
   published: boolean;
   cover_image_url: string | null;
+  live_url: string;
 };
 
 export function parseWorkContent(content: Work["content"]): WorkContent {

@@ -22,7 +22,7 @@ import {
 type FormStatus = "idle" | "ready" | "error";
 
 const selectClassName =
-  "h-10 w-full rounded-md border bg-background px-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring";
+  "h-10 w-full rounded-2xl border-[2.5px] border-foreground bg-card px-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring";
 
 export function ContactForm() {
   const [status, setStatus] = useState<FormStatus>("idle");

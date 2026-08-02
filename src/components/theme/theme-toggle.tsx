@@ -4,7 +4,7 @@ import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useSyncExternalStore } from "react";
 
-import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 function subscribe() {
   return () => {};
@@ -14,13 +14,14 @@ export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
   const mounted = useSyncExternalStore(subscribe, () => true, () => false);
 
+  const baseClass =
+    "inline-flex size-9 cursor-pointer items-center justify-center rounded-full text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50";
+
   if (!mounted) {
     return (
-      <Button
+      <button
         type="button"
-        variant="ghost"
-        size="sm"
-        className="size-9 px-0"
+        className={cn(baseClass, "cursor-wait")}
         aria-label="Toggle theme"
         disabled
       />
@@ -30,11 +31,9 @@ export function ThemeToggle() {
   const isDark = resolvedTheme === "dark";
 
   return (
-    <Button
+    <button
       type="button"
-      variant="ghost"
-      size="sm"
-      className="size-9 px-0"
+      className={baseClass}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       onClick={() => setTheme(isDark ? "light" : "dark")}
     >
@@ -43,6 +42,6 @@ export function ThemeToggle() {
       ) : (
         <Moon aria-hidden="true" className="size-4" />
       )}
-    </Button>
+    </button>
   );
 }
