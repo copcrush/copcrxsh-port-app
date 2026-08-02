@@ -2,13 +2,14 @@ import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
 import { Container } from "@/components/layout/container";
-import { HeroCollage } from "@/components/sections/hero-collage";
-import { PixelDivider } from "@/components/sections/pixel-divider";
+import { ProfileHero } from "@/components/sections/profile-hero";
 import { Reveal } from "@/components/sections/reveal";
 import { ServicesSection } from "@/components/sections/services-section";
 import { SkillsSection } from "@/components/sections/skills-section";
 import { WorksGrid } from "@/components/sections/works-grid";
 import { buttonVariants } from "@/components/ui/button";
+import { cv } from "@/content/cv";
+import { hireCta } from "@/content/nav";
 import { getPublishedWorks } from "@/features/works/queries";
 import { cn } from "@/lib/utils";
 
@@ -25,26 +26,28 @@ export default async function HomePage() {
 
   return (
     <>
-      <section className="overflow-hidden border-b py-16 sm:py-24 lg:py-28">
+      {/* 1. Hero — brand + profile + one hire CTA */}
+      <section className="overflow-hidden border-b-[2.5px] border-foreground py-16 sm:py-24 lg:py-28">
         <Container>
           <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
             <div>
-              <p className="mb-4 font-heading text-4xl font-semibold tracking-tight text-primary sm:text-5xl">
-                COPCRXSH
+              <p className="mb-4 font-heading text-4xl font-bold tracking-tight text-primary sm:text-5xl lg:text-6xl">
+                {cv.brand}
+                <span className="text-foreground">.</span>
               </p>
-              <h1 className="max-w-xl font-heading text-3xl leading-tight font-semibold tracking-tight sm:text-5xl">
-                Full-stack products with a clear point of view.
+              <h1 className="max-w-xl font-heading text-2xl leading-tight font-semibold tracking-tight sm:text-4xl">
+                {cv.heroLine}
               </h1>
               <p className="mt-6 max-w-lg text-lg leading-8 text-muted-foreground">
-                I build reliable web apps for HR reviews and freelance clients —
-                professional first, with a personal edge.
+                Based in {cv.location}. Available for freelance full-stack work —
+                clear scope, live previews, and production-ready delivery.
               </p>
               <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
                 <Link
-                  href="/contact"
+                  href={hireCta.href}
                   className={cn(buttonVariants({ size: "lg" }), "gap-2")}
                 >
-                  Contact Me
+                  {hireCta.label}
                   <ArrowUpRight aria-hidden="true" className="size-4" />
                 </Link>
                 <Link
@@ -55,16 +58,13 @@ export default async function HomePage() {
                 </Link>
               </div>
             </div>
-            <HeroCollage />
+            <ProfileHero />
           </div>
         </Container>
       </section>
 
-      <div className="py-8">
-        <PixelDivider />
-      </div>
-
-      <section className="py-20 sm:py-28">
+      {/* 2. Works — live previews for HR */}
+      <section className="bg-dot-grid py-20 sm:py-28">
         <Container>
           <Reveal>
             <div className="mb-10 flex items-end justify-between gap-6">
@@ -73,7 +73,7 @@ export default async function HomePage() {
                   Selected work
                 </p>
                 <h2 className="font-heading text-3xl font-semibold sm:text-4xl">
-                  Case studies from recent builds.
+                  Live builds you can open and check.
                 </h2>
               </div>
               <Link
@@ -88,34 +88,11 @@ export default async function HomePage() {
         </Container>
       </section>
 
+      {/* 3. Skills — CV stack */}
       <SkillsSection />
-      <ServicesSection />
 
-      <section className="border-t py-20 sm:py-28">
-        <Container>
-          <Reveal>
-            <div className="max-w-3xl">
-              <p className="mb-4 text-sm font-semibold tracking-widest text-primary uppercase">
-                Freelance
-              </p>
-              <h2 className="font-heading text-3xl font-semibold sm:text-4xl">
-                Need a freelance full-stack developer?
-              </h2>
-              <p className="mt-5 text-lg leading-8 text-muted-foreground">
-                Share your project brief, budget, and timeline. I will reply
-                with availability and a practical plan.
-              </p>
-              <Link
-                href="/contact"
-                className={cn(buttonVariants({ size: "lg" }), "mt-8 gap-2")}
-              >
-                Contact Me
-                <ArrowUpRight aria-hidden="true" className="size-4" />
-              </Link>
-            </div>
-          </Reveal>
-        </Container>
-      </section>
+      {/* 4. Services — what you hire for */}
+      <ServicesSection />
     </>
   );
 }

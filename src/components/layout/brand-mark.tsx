@@ -1,20 +1,17 @@
-import { CodeXml } from "lucide-react";
-
+import { BrandIcon } from "@/components/layout/brand-icon";
 import { cn } from "@/lib/utils";
 
 export function BrandMark({ className }: { className?: string }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2 font-heading text-lg font-bold tracking-[-0.04em]",
+        "inline-flex items-center gap-2.5 font-heading text-lg font-bold tracking-[-0.04em]",
         className,
       )}
     >
-      <span className="grid size-8 place-items-center rounded-md bg-foreground text-background">
-        <CodeXml aria-hidden="true" className="size-4 stroke-[2.5]" />
-      </span>
+      <BrandIcon className="size-9 sm:size-10" />
       <span>
-        COPCRXSH<span className="text-primary">.</span>
+        COPCRXSH<span className="text-ocean-blue">.</span>
       </span>
     </span>
   );

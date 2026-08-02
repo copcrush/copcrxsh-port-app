@@ -243,6 +243,7 @@ export type Database = {
           created_at: string
           description: string
           id: string
+          live_url: string | null
           published: boolean
           slug: string
           tags: string[]
@@ -255,6 +256,7 @@ export type Database = {
           created_at?: string
           description?: string
           id?: string
+          live_url?: string | null
           published?: boolean
           slug: string
           tags?: string[]
@@ -267,6 +269,7 @@ export type Database = {
           created_at?: string
           description?: string
           id?: string
+          live_url?: string | null
           published?: boolean
           slug?: string
           tags?: string[]

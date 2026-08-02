@@ -10,12 +10,15 @@ function toPayload(values: WorkFormValues) {
     .map((line) => line.trim())
     .filter(Boolean);
 
+  const liveUrl = values.live_url.trim();
+
   return {
     title: values.title.trim(),
     slug: values.slug.trim(),
     description: values.description.trim(),
     tags: values.tags,
     cover_image_url: values.cover_image_url,
+    live_url: liveUrl.length > 0 ? liveUrl : null,
     published: values.published,
     content: {
       body: values.body.trim(),
@@ -90,5 +93,6 @@ export function workToFormValues(work: Work): WorkFormValues {
     highlights: (content.highlights ?? []).join("\n"),
     published: work.published,
     cover_image_url: work.cover_image_url,
+    live_url: work.live_url ?? "",
   };
 }

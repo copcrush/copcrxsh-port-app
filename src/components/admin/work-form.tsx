@@ -30,6 +30,7 @@ const emptyValues: WorkFormValues = {
   highlights: "",
   published: false,
   cover_image_url: null,
+  live_url: "",
 };
 
 export function WorkForm({ work }: WorkFormProps) {
@@ -156,6 +157,21 @@ export function WorkForm({ work }: WorkFormProps) {
             )
           }
         />
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor={`${formId}-live-url`}>Live preview URL</Label>
+        <Input
+          id={`${formId}-live-url`}
+          type="url"
+          inputMode="url"
+          placeholder="https://example.vercel.app"
+          value={values.live_url}
+          onChange={(event) => updateField("live_url", event.target.value)}
+        />
+        <p className="text-xs text-muted-foreground">
+          Shown as a Go Live button so HR can open the live site in one click.
+        </p>
       </div>
 
       <div className="space-y-2">

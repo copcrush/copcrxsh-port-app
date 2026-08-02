@@ -3,38 +3,52 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #f6f3ec;
-  --foreground: #0e0e10;
-  --card: #fffdf8;
-  --card-foreground: #0e0e10;
-  --primary: #ef476f;
-  --primary-foreground: #0e0e10;
-  --muted: #ebe6dc;
-  --muted-foreground: #5e5b57;
-  --border: #d8d1c5;
-  --ring: #ef476f;
-  --golden-pollen: #ffd166;
-  --emerald: #06d6a0;
-  --ocean-blue: #118ab2;
-  --dark-teal: #073b4c;
-  --radius: 0.625rem;
+  /* Clean white desk + candy accents; grid sections stay soft blue */
+  --background: #ffffff;
+  --foreground: #0b1f33;
+  --card: #ffffff;
+  --card-foreground: #0b1f33;
+  --primary: #22c55e;
+  --primary-foreground: #0b1f33;
+  --muted: #e8f6ff;
+  --muted-foreground: #35506a;
+  --border: #0b1f33;
+  --ring: #22c55e;
+  /* Accent rainbow */
+  --ocean-blue: #4da3ff;
+  --emerald: #7cfa4e;
+  --golden-pollen: #ffe566;
+  --candy-orange: #ff8a3d;
+  --candy-pink: #ff6b9d;
+  --candy-purple: #9b6dff;
+  /* legacy alias used in a few components */
+  --dark-teal: var(--candy-purple);
+  --radius: 1rem;
+  --shadow-hard: 5px 5px 0 0 #0b1f33;
+  --shadow-hard-sm: 3px 3px 0 0 #0b1f33;
 }
 
 .dark {
-  --background: #0e0e10;
-  --foreground: #f6f3ec;
-  --card: #16161a;
-  --card-foreground: #f6f3ec;
-  --primary: #ef476f;
-  --primary-foreground: #f6f3ec;
-  --muted: #1c1c21;
-  --muted-foreground: #a8a49c;
-  --border: #2a2a30;
-  --ring: #ef476f;
-  --golden-pollen: #ffd166;
-  --emerald: #06d6a0;
-  --ocean-blue: #118ab2;
-  --dark-teal: #073b4c;
+  /* Deep navy desk — softer than pure black */
+  --background: #0a1628;
+  --foreground: #e8f4ff;
+  --card: #132337;
+  --card-foreground: #e8f4ff;
+  --primary: #3ddc84;
+  --primary-foreground: #0a1628;
+  --muted: #1a2d45;
+  --muted-foreground: #9db7d0;
+  --border: #7eb8e8;
+  --ring: #3ddc84;
+  --ocean-blue: #5eb0ff;
+  --emerald: #8aff5a;
+  --golden-pollen: #ffe566;
+  --candy-orange: #ff9a52;
+  --candy-pink: #ff7aad;
+  --candy-purple: #b48cff;
+  --dark-teal: var(--candy-purple);
+  --shadow-hard: 5px 5px 0 0 #7eb8e8;
+  --shadow-hard-sm: 3px 3px 0 0 #7eb8e8;
 }
 
 @theme inline {
@@ -52,14 +66,19 @@
   --color-emerald: var(--emerald);
   --color-ocean-blue: var(--ocean-blue);
   --color-dark-teal: var(--dark-teal);
+  --color-candy-orange: var(--candy-orange);
+  --color-candy-pink: var(--candy-pink);
+  --color-candy-purple: var(--candy-purple);
   --font-sans: "Inter", "Inter Fallback", ui-sans-serif, system-ui, sans-serif;
   --font-heading:
     "Space Grotesk", "Space Grotesk Fallback", ui-sans-serif, system-ui,
     sans-serif;
-  --radius-sm: calc(var(--radius) * 0.75);
-  --radius-md: calc(var(--radius) * 0.875);
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: calc(var(--radius) * 0.75);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.5);
+  --radius-xl: calc(var(--radius) * 1.25);
+  --shadow-hard: var(--shadow-hard);
+  --shadow-hard-sm: var(--shadow-hard-sm);
 }
 
 * {
@@ -68,6 +87,11 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
 }
 
 body {
@@ -75,6 +99,9 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-inter), sans-serif;
+  transition:
+    background-color 220ms ease,
+    color 220ms ease;
 }
 
 h1,
@@ -93,5 +120,52 @@ i {
 
 ::selection {
   background: var(--primary);
-  color: var(--foreground);
+  color: var(--primary-foreground);
+}
+
+.border-brutal {
+  border-width: 2.5px;
+  border-style: solid;
+  border-color: var(--foreground);
+}
+
+.shadow-hard {
+  box-shadow: var(--shadow-hard);
+}
+
+.shadow-hard-sm {
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.bg-dot-grid {
+  background-color: #f3faff;
+  background-image:
+    linear-gradient(
+      color-mix(in srgb, var(--ocean-blue) 22%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--ocean-blue) 22%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 20px 20px;
+}
+
+.dark .bg-dot-grid {
+  background-color: color-mix(in srgb, var(--muted) 80%, var(--background));
+  background-image:
+    linear-gradient(
+      color-mix(in srgb, var(--ocean-blue) 22%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--ocean-blue) 22%, transparent) 1px,
+      transparent 1px
+    );
+}
+
+.rounded-brutal {
+  border-radius: var(--radius);
 }
